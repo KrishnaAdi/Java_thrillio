@@ -1,11 +1,14 @@
 package com.kadi.managers;
 
+import com.kadi.dao.BookmarkDao;
 import com.kadi.entities.Book;
+import com.kadi.entities.Bookmark;
 import com.kadi.entities.Movie;
 import com.kadi.entities.WebLink;
 
 public class BookmarkManager {
     private static BookmarkManager instance = new BookmarkManager();
+    private static BookmarkDao dao = new BookmarkDao();
 
     private BookmarkManager() {};
 
@@ -50,5 +53,9 @@ public class BookmarkManager {
         webLink.setHost(host);
 
         return webLink;
+    }
+
+    public Bookmark[][] getBookmarks(){
+        return dao.getBookmarks();
     }
 }
