@@ -19,6 +19,7 @@ public class DataStore {
     private static User[] users = new User[TOTAL_USER_COUNT];
     private static Bookmark[][] bookmarks = new Bookmark[BOOKMARK_TYPES_COUNT][BOOKMARK_COUNT_PER_TYPE];
     private static UserBookmark[] userBookmarks = new UserBookmark[TOTAL_USER_COUNT * USER_BOOKMARK_LIMIT];
+    private static int bookmarkIndex;
 
     public static User[] getUsers() {
         return users;
@@ -66,5 +67,9 @@ public class DataStore {
         bookmarks[2][3] = BookmarkManager.getInstance().createBook(4003,	"Head First Design Patterns", "",2004, "O'Reilly Media", new String[]{"Eric Freeman","Bert Bates","Kathy Sierra","Elisabeth Robson"}, BookGenre.TECHNICAL,4.5);
         bookmarks[2][4] = BookmarkManager.getInstance().createBook(4004,	"Effective Java Programming Language Guide", "", 2007, "Prentice Hall", new String[]{"Joshua Bloch"}, BookGenre.TECHNICAL,4.9);
     }
-    
+
+    public static void add(UserBookmark userBookmark) {
+        userBookmarks[bookmarkIndex] = userBookmark;
+        bookmarkIndex++;
+    }
 }

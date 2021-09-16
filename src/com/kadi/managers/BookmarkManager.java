@@ -1,10 +1,7 @@
 package com.kadi.managers;
 
 import com.kadi.dao.BookmarkDao;
-import com.kadi.entities.Book;
-import com.kadi.entities.Bookmark;
-import com.kadi.entities.Movie;
-import com.kadi.entities.WebLink;
+import com.kadi.entities.*;
 
 public class BookmarkManager {
     private static BookmarkManager instance = new BookmarkManager();
@@ -57,5 +54,13 @@ public class BookmarkManager {
 
     public Bookmark[][] getBookmarks(){
         return dao.getBookmarks();
+    }
+
+    public void saveUserBookmark(User user, Bookmark bookmark) {
+        UserBookmark userBookmark = new UserBookmark();
+        userBookmark.setUser(user);
+        userBookmark.setBookmark(bookmark);
+
+        dao.saveUserBookmark(userBookmark);
     }
 }
